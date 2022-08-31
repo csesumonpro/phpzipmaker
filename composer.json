@@ -1,0 +1,18 @@
+{
+    "name": "csesumonpro/php-zip-maker",
+    "description": "A simple zip generator composer package",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Csesumonpro\\PhpZipMaker\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "csesumonpro",
+            "email": "csesumonpro@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
