@@ -1,15 +1,22 @@
 <?php
 
 return [
-    'archiveName' => 'My archive',
+    'archiveName' => '',
     'archiveDirectory' => '',
-    'archiveExtension' => '.zip',
+    'archiveExtension' => '',
     'includedFiles' => [
-        'index.php',
         'config.php',
-        'PhpZipMaker.php'
+        'style.css',
+        'index.php'
+    ],
+    'includedDirectory' => [
+        'src',
+        'vendor'
     ],
     'excludedFiles' => [
-        'index.php'
-    ]
+        'config.php',
+    ],
+    'excludedDirectory' => [
+        'vendor'
+    ],
 ];
