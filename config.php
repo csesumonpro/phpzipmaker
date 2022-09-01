@@ -7,14 +7,14 @@ return [
     'includedFiles' => [
         'config.php',
         'style.css',
-        'index.php'
-    ],
-    'includedDirectory' => [
-        'src',
-        'vendor'
+        'index.php',
     ],
     'excludedFiles' => [
         'config.php',
+        'src/index.php'
+    ],
+    'includedDirectory' => [
+        'src',
     ],
     'excludedDirectory' => [
         'vendor'
