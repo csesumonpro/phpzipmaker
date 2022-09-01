@@ -88,7 +88,17 @@ class PhpZipMaker extends \ZipArchive
         $excludedFiles = (isset($config['excludedFiles']) && !empty($config['excludedFiles'])) ? $config['excludedFiles'] : [];
         $fileNameWithPath = str_replace($this->rootPath . "/", "", $directoryPath);
 
-        if (in_array($directoryName, $includedDirectory) && !in_array($directoryName, $excludedDirectory) && !in_array($fileNameWithPath, $excludedFiles)) {
+        $directoryArray = explode("/", $fileNameWithPath);
+        //Remove last item from it's a file not directory
+        array_pop($directoryArray);
+        $directoryNameWithPath = implode('/', $directoryArray);
+
+        $isChildDirectory = isset($directoryArray[0]) && in_array($directoryArray[0], $includedDirectory);
+        $isDirectoryIncluded = in_array($directoryNameWithPath, $includedDirectory);
+        $isDirectoryExcluded = in_array($directoryNameWithPath, $excludedDirectory);
+        $isFileExcluded = in_array($fileNameWithPath, $excludedFiles);
+
+        if (($isChildDirectory || $isDirectoryIncluded) && !$isDirectoryExcluded && !$isFileExcluded) {
             return true;
         }
     }

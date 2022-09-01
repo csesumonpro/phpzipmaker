@@ -11,12 +11,12 @@ return [
     ],
     'excludedFiles' => [
         'config.php',
-        'src/index.php'
     ],
     'includedDirectory' => [
         'src',
     ],
     'excludedDirectory' => [
-        'vendor'
+        'vendor',
+//        'src/test',
     ],
 ];
