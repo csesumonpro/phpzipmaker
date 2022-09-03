@@ -93,14 +93,31 @@ class PhpZipMaker extends \ZipArchive
         array_pop($directoryArray);
         $directoryNameWithPath = implode('/', $directoryArray);
 
-        $isChildDirectory = isset($directoryArray[0]) && in_array($directoryArray[0], $includedDirectory);
-        $isDirectoryIncluded = in_array($directoryNameWithPath, $includedDirectory);
-        $isDirectoryExcluded = in_array($directoryNameWithPath, $excludedDirectory);
-        $isFileExcluded = in_array($fileNameWithPath, $excludedFiles);
+        $modifyDirectoryArray = [];
+        $newPath = '';
 
-        if (($isChildDirectory || $isDirectoryIncluded) && !$isDirectoryExcluded && !$isFileExcluded) {
+        foreach($directoryArray as $path) {
+            $newPath .= $path."/";
+            $modifyDirectoryArray[] = $newPath;
+        }
+
+        $modifyDirectoryPath =  array_map(function($item) {
+            return rtrim($item, '/');
+        }, $modifyDirectoryArray);
+
+        $isChildDirectory = (isset($modifyDirectoryPath[0]) && in_array($modifyDirectoryPath[0], $includedDirectory));
+        $isDirectoryIncluded = in_array($directoryNameWithPath, $includedDirectory);
+        $isFileExcluded = in_array($fileNameWithPath, $excludedFiles);
+        $isDirectoryExcluded = $this->arrayInArray($excludedDirectory, $modifyDirectoryPath);
+
+        if (($isChildDirectory || $isDirectoryIncluded) &&  !$isFileExcluded && !$isDirectoryExcluded) {
             return true;
         }
+    }
+
+    public function arrayInArray($needles, $haystack)
+    {
+        return !empty(array_intersect($needles, $haystack));
     }
 }
 

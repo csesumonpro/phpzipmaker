@@ -8,6 +8,7 @@ return [
         'config.php',
         'style.css',
         'index.php',
+        'src/testing/hello.js'
     ],
     'excludedFiles' => [
         'config.php',
@@ -17,6 +18,6 @@ return [
     ],
     'excludedDirectory' => [
         'vendor',
-//        'src/test',
+        'src/testing'
     ],
 ];
