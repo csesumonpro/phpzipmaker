@@ -1,1 +1,6 @@
+Changelog:
+== 1.0.1 (DATE: SEPTEMBER 4, 2022) ==
+* Added vendor directory
+
 == 1.0.0 (DATE: SEPTEMBER 4, 2022) ==
+Initial Release
