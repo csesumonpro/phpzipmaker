@@ -21,6 +21,7 @@ if ($xml) {
     $setConfig = [
         'archiveName' => $archiveName,
         'archiveFormDirectory' => $archiveFormDirectory,
+        'archiveToDirectory' => (isset($config['archiveToDirectory']) && !empty($config['archiveToDirectory'])) ? $config['archiveToDirectory'] : getcwd(),
         'archiveExtension' => (isset($config['archiveExtension']) && !empty($config['archiveExtension']))  && in_array($config['archiveExtension'], $supportedExtensions) ? $config['archiveExtension'] : '.zip',
         'includedFiles' => (isset($includeFiles['include']) && !empty($includeFiles['include'])) ? (array)$includeFiles['include'] : [],
         'excludedFiles' => (isset($excludeFiles['exclude']) && !empty($excludeFiles['exclude'])) ? (array)$excludeFiles['exclude'] : [],

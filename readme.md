@@ -10,7 +10,7 @@ Php zip maker is a simple library to create archive for your project with the se
 Install the package through [Composer](http://getcomposer.org/).
 
 For PHP 5.6 or 5.6~:
-<code> composer require "csesumonpro/phpzipmaker </code>
+<code> composer require csesumonpro/phpzipmaker </code>
 
 **Note: If your project doesn't have any composer.json file, you can use it by downloading the zip file from the github repository.**
 
@@ -63,7 +63,7 @@ and the name must be **phpzipmaker.xml**
 
 >### Usage
 It's very easy to make an archive through the above XML config just run the below command from your project root. <br/><br/>
-<code>php ./vendor/phpzipmaker/phpzipmaker.php</code>
+<code>php ./vendor/csesumonpro/phpzipmaker/phpzipmaker.php</code>
 
 >### UseCase
 Suppose you have a project with the following structure:

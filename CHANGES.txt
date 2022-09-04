@@ -1,4 +1,7 @@
 Changelog:
+== 1.0.2 (DATE: SEPTEMBER 4, 2022) ==
+* Fixes Archive to directory issues
+
 == 1.0.1 (DATE: SEPTEMBER 4, 2022) ==
 * Added vendor directory
 
