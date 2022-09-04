@@ -5,17 +5,12 @@ namespace Csesumonpro\PhpZipMaker;
 class PhpZipMaker extends \ZipArchive
 {
     public $config;
-    public $rootPath;
 
-    public function makeZip()
+    public function makeZip($getConfig = null)
     {
-        $this->config = require_once 'config.php';
-        $config = $this->config;
-        $source = (isset($config['archiveDirectory']) && !empty($config['archiveDirectory'])) ? $config['archiveDirectory'] : getcwd();
-        $this->rootPath = $source;
-        $archiveName = (isset($config['archiveName']) && !empty($config['archiveName'])) ? $config['archiveName'] : 'Archive';
-        $archiveExtension = (isset($config['archiveExtension']) && !empty($config['archiveExtension'])) ? $config['archiveExtension'] : '.zip';
-        $archive = $archiveName . $archiveExtension;
+        $this->config = $getConfig;
+        $source = $this->config['archiveFormDirectory'];
+        $archive = $this->config['archiveToDirectory'] . "/" . $this->config['archiveName'] . $this->config['archiveExtension'];
 
         if (!extension_loaded('zip') || !file_exists($source)) {
             return false;
@@ -40,9 +35,7 @@ class PhpZipMaker extends \ZipArchive
 
     public function isFile($filePath, $fileName)
     {
-        $config = $this->config;
-        $source = (isset($config['archiveDirectory']) && !empty($config['archiveDirectory'])) ? $config['archiveDirectory'] : getcwd();
-
+        $source = $this->config['archiveFormDirectory'];
         $this->addFromString(str_replace($source . '/', '', $filePath), file_get_contents($filePath));
     }
 
@@ -69,10 +62,9 @@ class PhpZipMaker extends \ZipArchive
 
     public function fileIsAllowed($filePath, $fileName)
     {
-        $config = $this->config;
-        $includedFiles = (isset($config['includedFiles']) && !empty($config['includedFiles'])) ? $config['includedFiles'] : [];
-        $excludedFiles = (isset($config['excludedFiles']) && !empty($config['excludedFiles'])) ? $config['excludedFiles'] : [];
-        $fileNameWithPath = str_replace($this->rootPath . "/", "", $filePath);
+        $includedFiles = $this->config['includedFiles'];
+        $excludedFiles = $this->config['excludedFiles'];
+        $fileNameWithPath = str_replace($this->config['archiveFormDirectory'] . "/", "", $filePath);
 
         if (in_array($fileNameWithPath, $includedFiles) && !in_array($fileNameWithPath, $excludedFiles)) {
             return true;
@@ -81,27 +73,26 @@ class PhpZipMaker extends \ZipArchive
 
     public function directoryIsAllowed($directoryPath, $directoryName)
     {
-        $config = $this->config;
-        $includedDirectory = (isset($config['includedDirectory']) && !empty($config['includedDirectory'])) ? $config['includedDirectory'] : [];
-        $excludedDirectory = (isset($config['excludedDirectory']) && !empty($config['excludedDirectory'])) ? $config['excludedDirectory'] : [];
-
-        $excludedFiles = (isset($config['excludedFiles']) && !empty($config['excludedFiles'])) ? $config['excludedFiles'] : [];
-        $fileNameWithPath = str_replace($this->rootPath . "/", "", $directoryPath);
+        $includedDirectory = $this->config['includedDirectory'];
+        $excludedDirectory = $this->config['excludedDirectory'];
+        $excludedFiles = $this->config['excludedFiles'];
+        $fileNameWithPath = str_replace($this->config['archiveFormDirectory'] . "/", "", $directoryPath);
 
         $directoryArray = explode("/", $fileNameWithPath);
-        //Remove last item from it's a file not directory
+        // Remove last item from it's a file not directory
         array_pop($directoryArray);
         $directoryNameWithPath = implode('/', $directoryArray);
 
         $modifyDirectoryArray = [];
         $newPath = '';
 
-        foreach($directoryArray as $path) {
-            $newPath .= $path."/";
+        foreach ($directoryArray as $path) {
+            $newPath .= $path . "/";
             $modifyDirectoryArray[] = $newPath;
         }
 
-        $modifyDirectoryPath =  array_map(function($item) {
+        // Removed slash from last
+        $modifyDirectoryPath = array_map(function ($item) {
             return rtrim($item, '/');
         }, $modifyDirectoryArray);
 
@@ -110,7 +101,7 @@ class PhpZipMaker extends \ZipArchive
         $isFileExcluded = in_array($fileNameWithPath, $excludedFiles);
         $isDirectoryExcluded = $this->arrayInArray($excludedDirectory, $modifyDirectoryPath);
 
-        if (($isChildDirectory || $isDirectoryIncluded) &&  !$isFileExcluded && !$isDirectoryExcluded) {
+        if (($isChildDirectory || $isDirectoryIncluded) && !$isFileExcluded && !$isDirectoryExcluded) {
             return true;
         }
     }

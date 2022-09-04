@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<ruleset name="Php Zip Maker">
+
+    <archiveName>ninja-charts</archiveName>
+    <archiveExtension>.zip</archiveExtension>
+    <archiveFormDirectory>/Volumes/Projects/plugins/ninja-charts</archiveFormDirectory>
+    <archiveToDirectory>/Users/csesumonpro/desktop</archiveToDirectory>
+
+    <include-file>
+        <include>ninja-charts.php</include>
+        <include>readme.txt</include>
+        <include>index.php</include>
+        <include>composer.json</include>
+    </include-file>
+
+    <exclude-file>
+        <exclude>package.json</exclude>
+    </exclude-file>
+
+    <include-directory>
+        <include>app</include>
+        <include>assets</include>
+        <include>boot</include>
+        <include>config</include>
+        <include>database</include>
+        <include>language</include>
+        <include>vendor</include>
+    </include-directory>
+
+    <exclude-directory>
+        <exclude>vendor/phpzipmaker</exclude>
+        <exclude>database/Faker</exclude>
+    </exclude-directory>
+
+</ruleset>
