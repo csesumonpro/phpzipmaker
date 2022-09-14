@@ -1,4 +1,7 @@
 Changelog:
+== 1.0.2 (DATE: SEPTEMBER 14, 2022) ==
+* Update readme
+
 == 1.0.2 (DATE: SEPTEMBER 4, 2022) ==
 * Fixes Archive to directory issues
 

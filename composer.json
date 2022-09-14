@@ -1,6 +1,6 @@
 {
     "name": "csesumonpro/phpzipmaker",
-    "description": "A simple zip generator composer package",
+    "description": "Php zip maker is a simple archive generator composer package. This package can make an archive with selected files & folders and deselect files & folders. This package also provides facilities to set the archive name, extension, and directory where you want to generate the archive.",
     "type": "library",
     "license": "MIT",
     "autoload": {
