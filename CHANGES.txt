@@ -1,4 +1,7 @@
 Changelog:
+== 1.0.4 (DATE: SEPTEMBER 14, 2022) ==
+* Update readme
+
 == 1.0.3 (DATE: SEPTEMBER 14, 2022) ==
 * Update readme
 
