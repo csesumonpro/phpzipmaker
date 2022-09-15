@@ -1,3 +1,7 @@
+[![Total Downloads](https://poser.pugx.org/csesumonpro/phpzipmaker/downloads)](https://packagist.org/packages/csesumonpro/phpzipmaker)
+[![License](https://poser.pugx.org/csesumonpro/phpzipmaker/license)](https://packagist.org/packages/csesumonpro/phpzipmaker)
+[![Latest Stable Version](https://poser.pugx.org/csesumonpro/phpzipmaker/v/stable)](https://packagist.org/packages/csesumonpro/phpzipmaker)
+
 >### PHP Zip Maker
 Php zip maker is a simple library to create archive for your project with the selected file or folder.
 >### Installation
